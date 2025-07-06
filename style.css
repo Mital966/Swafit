@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+header {
+    position: relative;
+    height: 100vh;
+    background: url('./images/bg1.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+.typing-container {
+    font-size: 2.5rem;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid orange;
+    width: 0;
+    animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.header-content p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .typing-container {
+        font-size: 1.5rem;
+        white-space: normal;
+        width: auto;
+    }
+    .header-content p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
