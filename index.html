@@ -1,111 +1,873 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SwatFit - Real Coaching. Real Results.</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    <body>
-        <body>
-            <header id="home">
-                <div class="overlay">
-                    <div class="header-content container">
-                        <div class="typing-container">REAL COACHING. REAL RESULTS.</div>
-                        <p>Transform Your Body with SwatFit</p>
-                        <a href="#about" class="btn btn-warning mt-3">Get Your Plan</a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwatFit - Transform | Professional Fitness Coaching</title>
+    <meta name="description"
+        content="SwatFit - Online & in-person coaching for body recomposition, competition prep and long-term health. Join now for a custom plan." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            overflow-x: hidden;
+            background: #fff
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1200;
+            padding: .9rem 0;
+            background: rgba(0, 0, 0, 0.85);
+            background-image: url('./animation.gif');
+            background-size: cover;
+            backdrop-filter: blur(6px);
+            transition: all .25s
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem
+        }
+
+        .logo {
+            color: #ff6b35;
+            font-weight: 800;
+            font-size: 1.6rem;
+
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: .35rem .5rem;
+            border-radius: 6px;
+            transition: background .15s
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.05)
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1400
+        }
+
+        .cta-pill {
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: #fff;
+            padding: .9rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(247, 147, 30, 0.18);
+            display: inline-flex;
+            gap: .6rem;
+            align-items: center
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 4rem 1rem;
+            background: #111;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .45), rgba(0, 0, 0, .6));
+            pointer-events: none
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1558611848-73f7eb4001d5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(.6);
+            transform: scale(1.03)
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 1000px;
+            padding: 1rem
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            line-height: 1.02;
+            margin-bottom: .6rem
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            opacity: .95;
+            margin-bottom: 1.2rem
+        }
+
+        .hero .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .btn {
+            padding: .9rem 1.2rem;
+            border-radius: 50px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, .18)
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, .12)
+        }
+
+        /* TOP BADGE */
+        .top-badge {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            padding: .45rem .8rem;
+            border-radius: 999px;
+            font-weight: 700;
+            z-index: 1400
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 4.5rem 1rem
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.2rem
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            color: #111;
+            position: relative
+        }
+
+        .section-sub {
+            color: #666;
+            margin-bottom: 1.6rem
+        }
+
+        /* WHY CHOOSE */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem
+        }
+
+        .why-card {
+            background: #fff;
+            padding: 1.4rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+            text-align: center
+        }
+
+        .why-card h4 {
+            color: #ff6b35;
+            margin-bottom: .6rem
+        }
+
+        /* FOUNDER */
+        .founder {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .founder-photo {
+            flex: 0 0 220px;
+            height: 220px;
+            border-radius: 14px;
+            background-image: url('./sweata.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .12)
+        }
+
+        .founder-bio {
+            flex: 1
+        }
+
+        .founder-bio h3 {
+            color: #111;
+            margin-bottom: .4rem
+        }
+
+        .founder-meta {
+            color: #666;
+            margin-bottom: .8rem
+        }
+
+        .badges {
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap
+        }
+
+        .badge {
+            background: rgba(255, 107, 53, .08);
+            color: #ff6b35;
+            padding: .35rem .6rem;
+            border-radius: 8px;
+            font-weight: 700
+        }
+
+        /* HOW IT WORKS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem
+        }
+
+        .step {
+            background: #fff;
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+            text-align: center
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: #fff;
+            display: inline-grid;
+            place-items: center;
+            margin-bottom: .8rem;
+            font-weight: 800
+        }
+
+        /* TRANSFORMATIONS (before/after slider simplified) */
+        .transform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem
+        }
+
+        .transform-card {
+            background: #111;
+            color: #fff;
+            border-radius: 12px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .25)
+        }
+
+        .ta-banner {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem
+        }
+
+        .ta-info {
+            padding: 1rem
+        }
+
+        /* PLANS */
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem
+        }
+
+        .plan {
+            background: #fff;
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06)
+        }
+
+        .plan h4 {
+            color: #111
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ff6b35;
+            margin: 1rem 0
+        }
+
+        .plan ul {
+            list-style: none;
+            color: #444;
+            margin: 0 0 1rem
+        }
+
+        .plan ul li {
+            padding: .25rem 0
+        }
+
+        /* TESTIMONIALS */
+        .testi {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .06)
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem
+        }
+
+        /* FAQ */
+        .faq {
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .q {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: .8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .04)
+        }
+
+        .q p {
+            color: #444
+        }
+
+        .q summary {
+            font-weight: 700
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 1.2rem
+        }
+
+        @media (max-width:900px) {
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: .85rem;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+            margin-bottom: .8rem
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: #fff;
+            padding: .9rem;
+            border-radius: 10px;
+            border: 0;
+            width: 100%;
+            font-weight: 800
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #ddd;
+            padding: 2rem 1rem;
+            text-align: center
+        }
+
+        /* UTILS */
+        .muted {
+            color: #666
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            gap: .6rem
+        }
+
+        /* small screens */
+        @media (max-width:768px) {
+            .nav-links {
+                display: none
+            }
+
+            .founder {
+                flex-direction: column
+            }
+
+            .hero {
+                padding: 3.5rem 1rem
+            }
+        }
+
+        .img {
+            height: 100px;
+            width: 100px;
+        }
+
+      .logo img {
+            height: 10vh;
+            transform: scale(2);
+        }
+       
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="top-badge">SwatFit — Coach: Gyana Prasad</div> -->
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="height: fit-content;"><img src="./logo4.png" alt=""></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#why">Why SwatFit</a></li>
+                <li><a href="#founder">About</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#transformations">Results</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- STICKY CTA (floating) -->
+    <div class="sticky-cta">
+        <a class="cta-pill" href="#contact">Join Coaching →</a>
+    </div>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content container">
+            <h1>SwatFit — Transform Faster, Stay Stronger</h1>
+            <p>Engineer-turned-coach helping busy professionals achieve competition-ready physiques and sustainable body
+                recomposition with data-driven plans and human support.</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary"
+                    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Your
+                    Plan</button>
+                <a class="btn btn-ghost" href="#plans">See Plans</a>
+                <a class="btn btn-ghost" href="#free">Free Guide</a>
+            </div>
+            <div style="margin-top:1rem;color:rgba(255,255,255,.85)" class="muted">Includes weekly check-ins, progress
+                tracking & competition prep options.</div>
+        </div>
+    </header>
+
+    <!-- WHY CHOOSE SWATFIT -->
+    <section id="why" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Choose SwatFit</h2>
+            <p class="section-sub">Personalized coaching built with engineering precision — plans that fit your life,
+                not the other way around.</p>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h4>Proven Process</h4>
+                    <p>Data-driven programming, weekly progress checks and measurable outcomes.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Coach from Experience</h4>
+                    <p>Engineer & coach who understands time constraints and system design for habit change.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Competition Prep</h4>
+                    <p>Posing, peaking and customized prep for bodybuilding or physique shows.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Flexible Online Coaching</h4>
+                    <p>Work with us remotely — weekly calls, messaging, and plan adjustments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section id="founder" class="section" style="background:#f8f9fa">
+        <div class="container">
+            <h2 class="section-title">About the Founder</h2>
+            <div class="founder">
+                <div class="founder-photo" role="img" aria-label="Photo of the founder"></div>
+                <div class="founder-bio">
+                    <h3>Swetabahan Behera — Engineer & Performance Coach</h3>
+                    <div class="founder-meta">Dual-Identity engineer, certified strength coach, competitor & long-time
+                        coach for fat loss, muscle retention and contest prep.</div>
+                    <p>SwatFit was born to combine engineering-style systems with human-centered coaching. I focus on
+                        simple, high-leverage habits, realistic timelines, and plans you can follow for years.</p>
+                    <div class="badges" style="margin-top:.8rem">
+                        <span class="badge">10+ yrs training</span>
+                        <span class="badge">Competition Prep</span>
+                        <span class="badge">Evidence-based</span>
                     </div>
                 </div>
-            </header>
-        
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#home">SwatFit</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#why">Why SwatFit</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#about">Founder</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#how">How It Works</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section">
+        <div class="container">
+            <h2 class="section-title">How SwatFit Coaching Works</h2>
+            <p class="section-sub">A simple, repeatable process designed to produce long-term results.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Apply</h4>
+                    <p class="muted">Fill the quick form to tell us your goals.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Consult</h4>
+                    <p class="muted">Free call to review history, time, and goals.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Plan</h4>
+                    <p class="muted">Receive your custom training & nutrition plan.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Execute</h4>
+                    <p class="muted">Weekly check-ins, track metrics & photos.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <h4>Adjust</h4>
+                    <p class="muted">We tweak the plan for consistent progress.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">6</div>
+                    <h4>Maintain</h4>
+                    <p class="muted">Long-term coaching or a handover to a self-managed plan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSFORMATIONS -->
+    <section id="transformations" class="section" style="background:#111;color:#fff">
+        <div class="container">
+            <h2 class="section-title">Client Transformations</h2>
+            <p class="section-sub" style="color:rgba(255,255,255,.7)">Real stories, real timelines — before/after photos
+                and stats.</p>
+            <div class="transform-grid" style="margin-top:1rem">
+                <div class="transform-card">
+                    <div class="ta-banner" style="background-image:url('./gyana_2.png')">
+                        <div
+                            style="background:linear-gradient(180deg,transparent,#0006);padding:.6rem;border-radius:8px">
+                            BEFORE → AFTER</div>
+                    </div>
+                    <div class="ta-info">
+                        <div style="font-weight:800;color:#ff6b35">Gyana Prasad</div>
+                        <p class="muted" style="color:rgba(255,255,255,.8)">Lost 22 Kg · 6 months · 15% body fat</p>
+                        <p style="color:rgba(255,255,255,.9)">"Personalized, consistent and the progress tracking kept
+                            me accountable."</p>
                     </div>
                 </div>
-            </nav>
-        
-            <section id="why" class="py-5 text-center">
-                <div class="container">
-                    <h2>Why Choose SwatFit?</h2>
-                    <ul class="list-unstyled text-start mx-auto" style="max-width: 600px;">
-                        <li>✅ Personalized Plans, Not Templates</li>
-                        <li>✅ Result-Oriented Coaching</li>
-                        <li>✅ Science-Backed, Sustainable Methods</li>
-                        <li>✅ Constant Support & Accountability</li>
-                        <li>✅ Experienced Coaches Who Walk the Talk</li>
-                        <li>✅ Flexible to Your Lifestyle</li>
-                        <li>✅ Improve Energy, Sleep, Skin & Confidence</li>
+
+                <div class="transform-card">
+                    <div class="ta-banner" style="background-image:url('./nishan.png')">
+                        <div
+                            style="background:linear-gradient(180deg,transparent,#0006);padding:.6rem;border-radius:8px">
+                            BEFORE → AFTER</div>
+                    </div>
+                    <div class="ta-info">
+                        <div style="font-weight:800;color:#ff6b35">Nishant Panchal</div>
+                        <p class="muted" style="color:rgba(255,255,255,.8)">ICN Gold Medalist</p>
+                        <p style="color:rgba(255,255,255,.9)">"Structured overload and a system that respects my work
+                            schedule."</p>
+                    </div>
+                </div>
+
+                <div class="transform-card">
+                    <div class="ta-banner" style="background-image:url('./prajwal.png')">
+                        <div
+                            style="background:linear-gradient(180deg,transparent,#0006);padding:.6rem;border-radius:8px">
+                            BEFORE → AFTER</div>
+                    </div>
+                    <div class="ta-info">
+                        <div style="font-weight:800;color:#ff6b35">Prwajwal yadav</div>
+                        <p class="muted" style="color:rgba(255,255,255,.8)">In just 3.5 months, I lost 17 kg</p>
+                        <p style="color:rgba(255,255,255,.9)">"Transformed from an
+                            unhealthy lifestyle to stepping on stage with confidence. Swat Sir guidance, discipline, and
+                            constant support made it possible."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANS -->
+    <section id="plans" class="section">
+        <div class="container">
+            <h2 class="section-title">Coaching Plans</h2>
+            <p class="section-sub">Choose the level of support that suits your goals — or apply for a custom plan.</p>
+            <div class="plans">
+                <div class="plan">
+                    <h4>1:1 Online Coaching</h4>
+                    <div class="price">₹5,999 / mo</div>
+                    <ul>
+                        <li>Custom training & nutrition</li>
+                        <li>Weekly check-ins</li>
+                        <li>Message support</li>
                     </ul>
+                    <button class="btn btn-primary" onclick="applyPlan('Online Coaching')">Apply Now</button>
                 </div>
-            </section>
-        
-            <section id="about" class="py-5 bg-light text-center">
-                <div class="container">
-                    <h2>About the Founder</h2>
-                    <p><strong>Swetabahan Behera</strong> — Engineer. Athlete. Coach.</p>
-                    <p>I’m a certified fitness coach and transformation expert, also an Engineer at Aditya Birla Group and the founder of SwatFit. My mission is to help people achieve fat loss, muscle gain, and stage-worthy physiques through science-backed, sustainable coaching.</p>
+                <div class="plan">
+                    <h4>Competition Prep</h4>
+                    <div class="price">₹12,999 / mo</div>
+                    <ul>
+                        <li>Posing & peaking</li>
+                        <li>In-depth macros & refeed strategy</li>
+                        <li>Peak week support</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="applyPlan('Competition Prep')">Apply Now</button>
                 </div>
-            </section>
-        
-            <section id="how" class="py-5 text-center">
-                <div class="container">
-                    <h2>How SwatFit Coaching Works</h2>
-                    <ol class="text-start mx-auto" style="max-width: 700px;">
-                        <li><strong>Step 1:</strong> Fill the Online Form – Share your goals, lifestyle, and health background.</li>
-                        <li><strong>Step 2:</strong> Get a Personalized Plan – Diet + Workout + Supplements tailored to you.</li>
-                        <li><strong>Step 3:</strong> 1-on-1 Consultation – Deep dive call with your coach.</li>
-                        <li><strong>Step 4:</strong> Weekly Check-ins – Progress tracking, photos, and feedback.</li>
-                        <li><strong>Step 5:</strong> 24/7 Coach Support – Direct access for daily queries and motivation.</li>
-                        <li><strong>Step 6:</strong> Long-Term Sustainable Results – Habit building and life-long change.</li>
-                    </ol>
+                <div class="plan">
+                    <h4>Custom Consultation</h4>
+                    <div class="price">One-time ₹2,499</div>
+                    <ul>
+                        <li>60-min consult call</li>
+                        <li>Actionable 8-week plan</li>
+                        <li>Follow-up 2 weeks</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="applyPlan('Consultation')">Book Consult</button>
                 </div>
-            </section>
-        
-            <section id="contact" class="py-5 bg-light text-center">
-                <div class="container">
-                    <h2>Contact / Apply Now</h2>
-                    <p>
-                        <i class="fas fa-envelope" style="color: #dc3545; font-size: 1.2em; margin-right: 8px;"></i>
-                        <strong>Email:</strong>
-                        <a href="mailto:swetabahan10@gmail.com" style="color: #333; text-decoration: none;">swetabahan10@gmail.com</a>
-                    </p>
-                    <p>
-                        <i class="fab fa-instagram" style="color: #E1306C; font-size: 1.2em; margin-right: 8px;"></i>
-                        <strong>Instagram:</strong>
-                        <a href="https://www.instagram.com/swatfit_/?hl=en" target="_blank" style="color: #E1306C; text-decoration: none;">@swatfit_<i class="fas fa-circle-check" style="color: #1DA1F2; font-size: 1em; margin-left: 5px;" title="Verified"></i></a>
-                    </p>
-                    <p>
-                        <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.2em; margin-right: 8px;"></i>
-                        <strong>WhatsApp:</strong>
-                        <a href="https://wa.me/+917992543054" target="_blank" style="color: #25D366; text-decoration: none;">Message Us</a>
-                    </p>
-                    <p>
-                        <a class="btn btn-outline-primary mt-3" href="https://docs.google.com/forms/d/e/1FAIpQLSfVaWxHHizi82zqb5hXYJWnbEtYhW74LYMZ9VEqZrE212ls9Q/viewform?usp=preview" target="_blank">Apply via Google Form</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section" style="background:#f8f9fa">
+        <div class="container">
+            <h2 class="section-title">Testimonials</h2>
+            <p class="section-sub">Client stories, video clips and message screenshots.</p>
+            <div class="testi-grid">
+                <div class="testimonial">
+                    <div style="font-weight:800">Rohit K.</div>
+                    <p class="muted">Lost 12 kgs in 5 months while keeping strength — "The coaching fit my schedule."
                     </p>
                 </div>
-            </section>
-            
-        
-            <footer class="bg-dark text-white text-center py-3">
-                <p>&copy; 2025 Swetabahan Behera | SwatFit | Designed with ❤️</p>
-            </footer>
-        
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+                <div class="testimonial">
+                    <div style="font-weight:800">Nisha P.</div>
+                    <p class="muted">"Clear instructions, accountability and real empathy — best coach I've worked
+                        with."</p>
+                </div>
+                <div class="testimonial">
+                    <div style="font-weight:800">Amit S.</div>
+                    <p class="muted">"Competition prep was flawless — posing practice and peak plan nailed it."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq">
+                <details class="q">
+                    <summary>Do I need a gym?</summary>
+                    <p>No — plans are scaled for home or gym training depending on your equipment and goals.</p>
+                </details>
+                <details class="q">
+                    <summary>Are beginners welcome?</summary>
+                    <p>Yes. Plans start with fundamentals and scale intensity as you progress.</p>
+                </details>
+                <details class="q">
+                    <summary>Do you provide meal plans?</summary>
+                    <p>Yes — macro-friendly meal templates, swaps and guidance. We focus on sustainable choices.</p>
+                </details>
+                <details class="q">
+                    <summary>How often do we check progress?</summary>
+                    <p>Weekly check-ins are standard; frequency can be increased if needed.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREE GUIDE + INSTAGRAM FEED (placeholder) -->
+    <section id="free" class="section" style="background:#fff">
+        <div class="container">
+            <h2 class="section-title">Free Resources</h2>
+            <p class="section-sub">Grab a short guide to the first 30 days of a successful cut or recomp.</p>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap">
+                <a class="btn btn-primary" href="#"
+                    onclick="alert('Download placeholder — upload your PDF or provide link to replace.')">Download
+                    30-Day Guide</a>
+                <a class="btn btn-ghost" href="https://instagram.com" target="_blank">See our Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / APPLY -->
+    <section id="contact" class="section" style="background:#111;color:#fff;padding-bottom:6rem">
+        <div class="container">
+            <h2 class="section-title">Start Your Transformation</h2>
+            <p class="section-sub" style="color:rgba(255,255,255,.8)">Apply now — we'll follow up for a free consult
+                call.</p>
+            <div class="contact-grid">
+                <form id="contactForm" class="contact-form" onsubmit="handleSubmit(event)">
+                    <input id="name" type="text" placeholder="Full name" required />
+                    <input id="email" type="email" placeholder="Email" required />
+                    <input id="phone" type="tel" placeholder="Phone (WhatsApp preferred)" required />
+                    <textarea id="goals" rows="5" placeholder="Tell us about your goals, timeline & constraints"
+                        required></textarea>
+                    <input id="plan" type="hidden" value="" />
+                    <button class="submit-btn" type="submit">Apply & Schedule Call</button>
+                </form>
+
+                <div style="background:linear-gradient(180deg,#111,#0b0b0b);padding:1.2rem;border-radius:12px">
+                    <h4 style="color:#ff6b35">Quick Apply (WhatsApp)</h4>
+                    <p class="muted" style="color:rgba(255,255,255,.8)">Message us on WhatsApp to fast-track your
+                        application.</p>
+                    <a id="waLink" href="https://wa.me/917992543054" target="_blank" class="btn btn-primary"
+                        style="display:inline-block;margin-top:.6rem">Message on WhatsApp</a>
+
+                    <div style="margin-top:1rem;color:rgba(255,255,255,.8)">
+                        <strong>Or embed form:</strong>
+                        <div style="margin-top:.6rem;background:#000;border-radius:8px;padding:.6rem;color:#ddd">
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfVaWxHHizi82zqb5hXYJWnbEtYhW74LYMZ9VEqZrE212ls9Q/viewform?usp=preview ">
+                                Fill up Google Form</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SwatFit. All rights reserved. Built for busy professionals & competitors.</p>
+            <div style="margin-top:.6rem"><a href="#privacy"
+                    style="color:rgba(255,255,255,.6);text-decoration:none">Privacy</a> · <a href="#terms"
+                    style="color:rgba(255,255,255,.6);text-decoration:none">Terms</a></div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a id="floatingWA" href="https://wa.me/917992543054" target="_blank"
+        style="position:fixed;right:18px;bottom:88px;z-index:1500;background:#25D366;padding:.85rem;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">WA</a>
+
+    <script>
+        // Smooth nav: highlight active section (simple)
+        const links = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            const fromTop = window.scrollY + 120;
+            links.forEach(link => {
+                const section = document.querySelector(link.hash);
+                if (!section) return;
+                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    link.style.background = 'rgba(255,255,255,0.06)';
+                } else link.style.background = 'transparent';
+            });
+        });
+
+        // Plan apply helper
+        function applyPlan(planName) {
+            document.getElementById('plan').value = planName;
+            document.getElementById('name').focus();
+            window.location.hash = '#contact';
+            window.scrollTo({ top: document.getElementById('contact').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        // Contact form submission (placeholder behaviour)
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const plan = document.getElementById('plan').value || 'Not specified';
+
+            // In real deploy: POST to your backend / Google Form / CRM
+            alert(`Thanks ${name}! We'll contact you on ${phone} about: ${plan}`);
+
+            // reset
+            e.target.reset();
+        }
+
+        // Small enhancement: open free guide anchor to top
+        document.querySelectorAll('a[href="#free"]').forEach(a => a.addEventListener('click', (ev) => { ev.preventDefault(); document.getElementById('free').scrollIntoView({ behavior: 'smooth' }); }));
+    </script>
 </body>
+
 </html>
